@@ -1,2 +1,2 @@
-## v0.1.0
-feat: copy of v1
+## v3.0.0
+feat: copy of v3.0.0
