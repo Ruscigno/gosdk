@@ -1,3 +1,11 @@
+## v0.32.1
+### v3
+feat: remove unused enum
+
+## v0.32
+### v3
+feat: update account.proto
+
 ## v0.31.3
 chore: test
 
