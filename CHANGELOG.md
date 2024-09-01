@@ -1,3 +1,7 @@
+## v0.32.4
+### v3
+feat: create transaction, order, position models
+
 ## v0.32.3
 ### v3
 feat: update dependencies version

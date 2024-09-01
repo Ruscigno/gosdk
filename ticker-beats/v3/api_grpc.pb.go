@@ -21,7 +21,7 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	TransactionsService_CreateAccount_FullMethodName          = "/tickerbeats.v3.TransactionsService/CreateAccount"
-	TransactionsService_CreateDeals_FullMethodName            = "/tickerbeats.v3.TransactionsService/CreateDeals"
+	TransactionsService_CreateTransactions_FullMethodName     = "/tickerbeats.v3.TransactionsService/CreateTransactions"
 	TransactionsService_CreateOrders_FullMethodName           = "/tickerbeats.v3.TransactionsService/CreateOrders"
 	TransactionsService_CreatePositions_FullMethodName        = "/tickerbeats.v3.TransactionsService/CreatePositions"
 	TransactionsService_CreateTradeTransaction_FullMethodName = "/tickerbeats.v3.TransactionsService/CreateTradeTransaction"
@@ -35,8 +35,8 @@ const (
 type TransactionsServiceClient interface {
 	// Creates a new account
 	CreateAccount(ctx context.Context, in *CreateAccountRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// Creates a new deal
-	CreateDeals(ctx context.Context, in *CreateDealsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// Creates a new transaction
+	CreateTransactions(ctx context.Context, in *CreateTransactionsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Creates a new order
 	CreateOrders(ctx context.Context, in *CreateOrdersRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Creates a new position
@@ -63,10 +63,10 @@ func (c *transactionsServiceClient) CreateAccount(ctx context.Context, in *Creat
 	return out, nil
 }
 
-func (c *transactionsServiceClient) CreateDeals(ctx context.Context, in *CreateDealsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *transactionsServiceClient) CreateTransactions(ctx context.Context, in *CreateTransactionsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, TransactionsService_CreateDeals_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, TransactionsService_CreateTransactions_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -111,8 +111,8 @@ func (c *transactionsServiceClient) CreateTradeTransaction(ctx context.Context, 
 type TransactionsServiceServer interface {
 	// Creates a new account
 	CreateAccount(context.Context, *CreateAccountRequest) (*emptypb.Empty, error)
-	// Creates a new deal
-	CreateDeals(context.Context, *CreateDealsRequest) (*emptypb.Empty, error)
+	// Creates a new transaction
+	CreateTransactions(context.Context, *CreateTransactionsRequest) (*emptypb.Empty, error)
 	// Creates a new order
 	CreateOrders(context.Context, *CreateOrdersRequest) (*emptypb.Empty, error)
 	// Creates a new position
@@ -132,8 +132,8 @@ type UnimplementedTransactionsServiceServer struct{}
 func (UnimplementedTransactionsServiceServer) CreateAccount(context.Context, *CreateAccountRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateAccount not implemented")
 }
-func (UnimplementedTransactionsServiceServer) CreateDeals(context.Context, *CreateDealsRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateDeals not implemented")
+func (UnimplementedTransactionsServiceServer) CreateTransactions(context.Context, *CreateTransactionsRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateTransactions not implemented")
 }
 func (UnimplementedTransactionsServiceServer) CreateOrders(context.Context, *CreateOrdersRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateOrders not implemented")
@@ -183,20 +183,20 @@ func _TransactionsService_CreateAccount_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TransactionsService_CreateDeals_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateDealsRequest)
+func _TransactionsService_CreateTransactions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateTransactionsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TransactionsServiceServer).CreateDeals(ctx, in)
+		return srv.(TransactionsServiceServer).CreateTransactions(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: TransactionsService_CreateDeals_FullMethodName,
+		FullMethod: TransactionsService_CreateTransactions_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionsServiceServer).CreateDeals(ctx, req.(*CreateDealsRequest))
+		return srv.(TransactionsServiceServer).CreateTransactions(ctx, req.(*CreateTransactionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -267,8 +267,8 @@ var TransactionsService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _TransactionsService_CreateAccount_Handler,
 		},
 		{
-			MethodName: "CreateDeals",
-			Handler:    _TransactionsService_CreateDeals_Handler,
+			MethodName: "CreateTransactions",
+			Handler:    _TransactionsService_CreateTransactions_Handler,
 		},
 		{
 			MethodName: "CreateOrders",
