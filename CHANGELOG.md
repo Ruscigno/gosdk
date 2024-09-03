@@ -1,3 +1,7 @@
+## v0.32.5
+### v3
+feat: remove reason field, leaving only on transactions model
+
 ## v0.32.4
 ### v3
 feat: create transaction, order, position models
