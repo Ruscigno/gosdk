@@ -1,3 +1,7 @@
+## v0.32.6
+### v3
+feat: add transaction_seq field
+
 ## v0.32.5
 ### v3
 feat: remove reason field, leaving only on transactions model
